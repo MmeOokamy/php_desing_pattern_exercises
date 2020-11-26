@@ -1,6 +1,7 @@
 <?php
+
 interface Cookie
 {
-  public function getType();
-  public function getCalories();
+    public function getType();
+    public function getCalories();
 }

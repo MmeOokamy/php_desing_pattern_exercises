@@ -1,19 +1,19 @@
 <?php
 include_once('FoodFactory.php');
 
-$woodenFactory = new AsianFoodFactory();
+$asianFactory = new AsianFoodFactory();
 
-$door = $woodenFactory->makeFood();
-$expert = $woodenFactory->makeExpert();
+$food= $asianFactory->makeFood();
+$expert = $asianFactory->makeExpert();
 
-$door->getDescription(); 
+$food->getDescription();
 $expert->getDescription();
 
 // Idem pour le Factory de porte en fer
-$ironFactory = new FrenchFoodFactory();
+$frenchFactory = new FrenchFoodFactory();
 
-$door = $ironFactory->makeFood();
-$expert = $ironFactory->makeExpert();
+$food = $frenchFactory->makeFood();
+$expert = $frenchFactory->makeExpert();
 
-$door->getDescription(); 
+$food->getDescription();
 $expert->getDescription();

@@ -12,4 +12,6 @@ class RadioStation
     {
         return $this->frequency;
     }
+
+
 }

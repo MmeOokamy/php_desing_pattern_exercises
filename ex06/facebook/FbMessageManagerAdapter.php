@@ -5,8 +5,16 @@ include_once('FbMessageManager.php');
 class FbMessageManagerAdapter implements MessageManagerInterface
 {
   // Your code here
+    private $fbMessageMessenger;
+
+    public function __construct(FbMessageManager $fbMessageManager)
+    {
+        $this->fbMessageMessenger = $fbMessageManager;
+    }
+
     public function printMessage($msg)
     {
-        // TODO: Implement printMessage() method.
+        return (new FbMessageManager)->printMessageFb($msg);
+
     }
 }

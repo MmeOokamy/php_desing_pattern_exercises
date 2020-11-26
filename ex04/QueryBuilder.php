@@ -5,55 +5,64 @@ class QueryBuilder
 
     private $select = [];
     private $from;
-    private $where = [];
+    private $where;
     // Your code here
 
 
-    public function select(...$args): QueryBuilder
+    public function select(...$args): self
     {
         $this->select = $args;
         return $this;
     }
 
-    public function from($table, $alias): QueryBuilder
+    public function from($table, $alias = false): self
     {
         if ($alias){
             $this->from[$alias] = $table;
         } else {
-            $this->from[] = [$table];
+            $this->from[] = $table;
         }
         return $this;
 
     }
 
-    public function where(...$args): QueryBuilder
+    public function where(...$args): self
     {
-        $this->where[] = $args;
+        $this->where = $args;
         return $this;
     }
 
     public function __toString()
     {
-        $parts = ['SELECT'];
-        if($this->select){
-            $parts[] = join(',', $this->select);
-        } else {
-            $parts[] = '*';
-        }
-        $parts[] = ['FROM'];
-        $parts[] = $this->createFrom();
+        $requete = ['SELECT'];
+            if($this->select){
+                $requete[] = join(', ', $this->select);
+            } else {
+                $requete[] = '*';
+            }
+
+        $requete[] = 'FROM';
+        $requete[] = $this->createFrom();
 
         if ($this->where){
-            $parts[] = 'WHERE';
-            $parts[] = "(" . join(', ', $this->where) . ")";
+            $requete[] = 'WHERE';
+            $requete[] = join(', ', $this->where);
         }
 
-        return join(' ', $parts[]);
+        return join(' ', $requete);
 
     }
 
     public function createFrom(): string{
         $from = [];
-        foreach ($this)
+        foreach ($this->from as $key => $value){
+            if (is_string($key)){
+                $from[] = "$value as $key";
+            } else {
+                $from[] = $value;
+            }
+        }
+        return join(', ', $from );
     }
+
 }

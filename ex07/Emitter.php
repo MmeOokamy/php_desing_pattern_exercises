@@ -22,11 +22,18 @@ class Emitter
 
     public function emit(string $event, ...$args)
     {
-        call_user_func_array($event);
+        if (array_key_exists($event, $this->listeners)){
+            foreach ($this->listeners[$event] as $listener){
+                call_user_func_array($listener, $args);
+            }
+        }
     }
 
     public function on(string $event, callable $fct)
     {
-        $fct = $this->listeners[];
+        if (!array_key_exists($event, $this->listeners)) {
+            $this->listeners[$event] = [];
+        }
+        $this->listeners[$event][] = $fct;
     }
 }

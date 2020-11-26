@@ -7,19 +7,22 @@ class StationList implements Countable, Iterator
     protected $stations = [];
     protected $counter;
 
-    public function addStation($frequency)
+
+
+    public function addStation(RadioStation $station)
     {
-        $this->stations[] = (new RadioStation($frequency));
+        $this->stations[] = $station;
     }
 
-    public function removeStation(RadioStation $param)
+    public function removeStation(RadioStation $toRemove)
     {
-        $this->stations = array_filter($this->stations, function (RadioStation $radioStation) use ($param){
-            return $radioStation->$param;
+        $toRemoveFrequency = $toRemove->getFrequency();
+        $this->stations = array_filter($this->stations, function (RadioStation $station) use ($toRemoveFrequency) {
+            return $station->getFrequency() !== $toRemoveFrequency;
         });
     }
 
-    public function current(): int
+    public function current(): RadioStation
     {
        return $this->stations[$this->counter];
     }
@@ -34,7 +37,7 @@ class StationList implements Countable, Iterator
         return $this->counter;
     }
 
-    public function valid()
+    public function valid(): bool
     {
         return isset($this->stations[$this->counter]);
     }
@@ -44,7 +47,7 @@ class StationList implements Countable, Iterator
         $this->counter = 0;
     }
 
-    public function count()
+    public function count(): int
     {
         return count($this->stations);
     }

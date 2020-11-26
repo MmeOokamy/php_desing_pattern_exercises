@@ -1,8 +1,12 @@
 <?php
   class Post
   {
+      //int AI
     public $id;
+    //nom de l'auteur de l'article
     public $author;
+
+    //article
     public $content;
 
     public function __construct($id, $author, $content)

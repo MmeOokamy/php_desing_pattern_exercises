@@ -2,32 +2,29 @@
 class BurgerFacade
 {
 //   Your code here
-    protected $burger;
+    protected Burger $burger;
 
-    public function __construct(Burger $makeBurger)
+    public function __construct(Burger $burger)
     {
-        $this->burger = $makeBurger;
+        $this->burger = $burger;
     }
 
-    /**
-     * @return Burger
-     */
-    public function getBurger(): Burger
+
+    public function getBurger()
     {
         $this->burger->getBread();
         $this->burger->cookSteak();
         $this->burger->putTheVegetables();
         $this->burger->serve();
-        return $this->burger;
+
     }
 
-
-    public function eatBurger(): Burger
+    public function eatBurger()
     {
         $this->burger->unpack();
         $this->burger->eat();
         $this->burger->clearTheTable();
-        return $this->burger;
+
     }
 
 }

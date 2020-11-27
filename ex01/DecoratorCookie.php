@@ -5,28 +5,45 @@ include_once ('SimpleCookie.php');
 class CookieMacadamia implements Cookie
 {
     //  Your code here
+    protected Cookie $cookie;
+
+    public function __construct(Cookie $cookie)
+    {
+        $this->cookie = $cookie;
+    }
 
     public function getType()
     {
-        return (new SimpleCookie)->getType() . ', ' . 'Macadamia Cookie';
+        //return (new SimpleCookie)->getType() . ', ' . 'Macadamia Cookie';
+        return $this->cookie->getType() . ', Macadamia Cookie!';
+
     }
 
     public function getCalories()
     {
-        return (new SimpleCookie)->getCalories() + 10;
+        return $this->cookie->getCalories() + 10;
     }
 }
 
 class CookieWhiteChocolate implements Cookie
 {
+    Protected Cookie $cookie;
+
+    public function __construct(Cookie $cookie)
+    {
+        $this->cookie = $cookie;
+    }
+
     //  Your code here
     public function getType()
     {
-        return (new CookieMacadamia())->getType() . ', ' . 'White Chocolate Cookie';
+      return $this->cookie->getType() . ', White Chocolate Cookie';
+        //  return (new CookieMacadamia())->getType() . ', ' . 'White Chocolate Cookie';
     }
 
     public function getCalories()
     {
-        return (new CookieMacadamia)->getCalories() + 20;
+        return$this->cookie->getCalories() + 20;
+        //return (new CookieMacadamia)->getCalories() + 20;
     }
 }

@@ -4,8 +4,6 @@ include_once('Cookie.php');
 
 class SimpleCookie implements Cookie
 {
-    protected $cookie;
-
     public function __construct()
     {
 

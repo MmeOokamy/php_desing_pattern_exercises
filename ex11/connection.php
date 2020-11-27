@@ -1,38 +1,18 @@
 <?php
+
 class Db
 {
-    private $login;
-    private $pass;
-    private $instance;
+    private static $instance = NULL;
 
+    private function __construct() {}
 
-    public function __construct($login ='root', $pass=''){
-        $this->login = $login;
-        $this->pass = $pass;
-        $this->connexion();
-    }
+    private function __clone() {}
 
-    private function connexion(){
-        try
-        {
-            $bdd = new PDO(
-                'mysql:host=localhost;dbname=php_mvc',
-                $this->login,
-                $this->pass
-            );
-            $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-            $bdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-            $this->instance = $bdd;
+    public static function getInstance() {
+        if (!isset(self::$instance)) {
+            $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
+            self::$instance = new PDO('mysql:host=localhost;dbname=php_mvc', 'root', '', $pdo_options);
         }
-        catch (PDOException $e)
-        {
-            $msg = 'ERREUR PDO dans ' . $e->getFile() . ' L.' . $e->getLine() . ' : ' . $e->getMessage();
-            die($msg);
-        }
+        return self::$instance;
     }
-
-
-
-
 }
-

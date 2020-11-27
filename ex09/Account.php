@@ -19,7 +19,7 @@ abstract class Account
             echo sprintf('On a pas asser d\'argent sur %s. Voyons voir ailleurs ..' . PHP_EOL, get_called_class());
             $this->successor->pay($amountToPay);
         } else {
-            throw new Exception('Alerte! ya pas asser d\'argent!');
+            throw new Exception('Alerte! ya pas d\'argent!');
         }
     }
 

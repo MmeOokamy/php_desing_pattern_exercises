@@ -3,6 +3,7 @@
   {
     public function home()
     {
+        $pseudo = 'comcombre De Mer';
       require_once('views/pages/home.php');
     }
 

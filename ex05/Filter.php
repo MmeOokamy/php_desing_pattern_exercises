@@ -10,7 +10,7 @@ class BAndWFilter implements Filter
 //  Your code here
     public function getFilter()
     {
-        echo 'Picture with Black And White Filter' . PHP_EOL;
+        return 'Picture with Black And White Filter';
 
     }
 }
@@ -20,6 +20,6 @@ class SepiaFilter implements Filter
 //  Your code here
     public function getFilter()
     {
-        echo 'Picture with Sepia Filter' . PHP_EOL;
+        return 'Picture with Sepia Filter';
     }
 }
